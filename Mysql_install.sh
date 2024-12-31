@@ -1,13 +1,13 @@
 #!/bin/bash
 userid=$(id -u)
-if [ $userid -ne 0]
+if [ $userid -ne 0 ]
 then
     echo "ERROR:: You must have sudo access to this script"
     exit 1
 fi
 
 dnf list installed mysql
-if [ $? -ne 0]
+if [ $? -ne 0 ]
 then
     dnf install mysql -y
     if [ $? -ne 0 ]
@@ -22,7 +22,7 @@ else
 fi
 
 dnf list installed git
-if [ $? -ne 0]
+if [ $? -ne 0 ]
 then
     dnf install git -y
     if [ $? -ne 0 ]
