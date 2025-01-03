@@ -33,7 +33,7 @@ VALIDATE $? "Enabling...MySQL"
 systemctl start mysqld
 VALIDATE $? "Starting...MySQL"
 
-mysql -h mysql.daws-82s.site -u root -pExpenseApp@1 -e 'show databases;'
+mysql -h mysql.daws-82s.site -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
 then
     echo "MySQL root password not setup" &>>$LOG_FILE_NAME
