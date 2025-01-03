@@ -35,8 +35,17 @@ VALIDATE $? "Enabling NodeJs:20"
 dnf install nodejs -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing NodeJS"
 
-useradd expense &>>$LOG_FILE_NAME
-VALIDATE $? "Adding expense user"
+id expense &>>$LOG_FILE_NAME
+if [ $? -ne 0 ]
+then
+    useradd expense &>>$LOG_FILE_NAME
+    VALIDATE $? "Adding expense user"
+else
+    echo -e "expense user already exists ... $Y SKIPPING $N"
+fi
+
+mkdir -p /app &>>$LOG_FILE_NAME
+VALIDATE $? "Creating app directory"
 
 mkdir /app &>>$LOG_FILE_NAME
 VALIDATE $? "Creating app directory"
@@ -52,7 +61,7 @@ VALIDATE $? "Unzipping backend"
 npm install &>>$LOG_FILE_NAME
 VALIDATE $? "Installing Dependencies"
 
-cp /opt/backend.service /etc/systemd/system/backend.service
+cp /opt/Backend.service /etc/systemd/system/backend.service
 
 dnf install mysql -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing MySQL client"
