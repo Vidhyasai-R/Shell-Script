@@ -1,5 +1,5 @@
 #!/bin/bash
-LOG_FOLDER=/var/log/DB-logs
+LOG_FOLDER=/var/log/Backend-logs
 LOG_FILE=$(echo "$0" | cut -d "." -f1)
 TIME_STAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE_NAME="$LOG_FOLDER/$LOG_FILE-$TIME_STAMP.log"
